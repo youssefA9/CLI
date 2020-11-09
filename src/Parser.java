@@ -1,17 +1,73 @@
-public class Parser {
-    // Interface for parser public class Parser{ String[] args; // Will be filled by arguments extracted by parse method String cmd; // Will be filled by the command extracted by parse method
+package CLI;
 
-    /**
-     * Return: true if it was able to parse user input correctly.
-     * Otherwise false * Parameter input: user command * In case of success,
-     * it should save the extracted command and arguments to args and cmd variables *
-     * It should also print error messages in case of too few arguments for a commands *
-     * eg. “cp requires 2 arguments”
-     */
-    public boolean parse(String input);
+import java.util.ArrayList;
 
-    public String getCmd();
+public class Parser{
+    private String[] args;
+    private String cmd;
+    private ArrayList<String> LOC=new ArrayList<String>();
 
-    public String[] getArguments();
+    Parser(){
+        args=new String[2];
+        cmd=null;
+        LOC.add("cd");
+        LOC.add("ls");
+        LOC.add("cp");
+        LOC.add("cat");
+        LOC.add("more");
+        LOC.add("<");
+        LOC.add("<<");
+        LOC.add("mkdir");
+        LOC.add("rmdir");
+        LOC.add("mv");
+        LOC.add("rm");
+        LOC.add("args");
+        LOC.add("date");
+        LOC.add("help");
+        LOC.add("pwd");
+        LOC.add("clear");
+    }
+
+    public boolean validate(String cmd){
+        if(LOC.contains(cmd))
+            return true;
+        else
+            return false;
+    }
+
+    public boolean parse(String input) {
+        String[] Substrings=input.split(" ",3);
+
+        for(int i=0;i<Substrings.length;i++){
+            if(Substrings[i].contains(" ")){
+                System.out.println("error due to issue in input");
+                return false;
+            }
+        }
+        if(Substrings.length>1)
+        {
+            for(int i=0;i< Substrings.length-1;i++){
+              args[i]=Substrings[i+1];
+            }
+        }else{
+
+        }
+        if(validate(Substrings[0])){
+            this.cmd=Substrings[0];
+             return true;
+        }
+
+        else{
+            return false;
+        }
+    }
+
+    public String getCmd() {
+        return cmd;
+    }
+
+    public String[] getArguments() {
+        return args;
+    }
 }
-}
+
