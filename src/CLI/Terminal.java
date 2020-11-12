@@ -11,24 +11,30 @@ import java.util.Scanner;
 
 public class Terminal {
 
-    public void cd(){}
-    public void ls(){}
-    public void cp(){}
-    public void cat(File arr[],String fileName){
+    public void cd() {
+    }
 
-        String path=search(arr,fileName);
+    public void ls() {
+    }
 
-        if(path.equals("Not Found")){
-            System.out.println("File :"+fileName+" is not found!");
+    public void cp() {
+    }
+
+    public void cat(File arr[], String fileName) {
+
+        String path = search(arr, fileName);
+
+        if (path.equals("Not Found")) {
+            System.out.println("File :" + fileName + " is not found!");
             return;
         }
-        File MyFile=new File(path);
-        try{
-            Scanner read=new Scanner(MyFile);
-            while(read.hasNextLine()){
+        File MyFile = new File(path);
+        try {
+            Scanner read = new Scanner(MyFile);
+            while (read.hasNextLine()) {
                 System.out.println(read.nextLine());
             }
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -81,7 +87,7 @@ public class Terminal {
                 BufferedReader read = new BufferedReader(new InputStreamReader(f));
                 Scanner input = new Scanner(System.in);
 
-                while ((line = read.readLine())!= null) {
+                while ((line = read.readLine()) != null) {
                     System.out.println(line);
                     counter++;
 
@@ -100,43 +106,52 @@ public class Terminal {
             return;
         }
     }
-    public void mkdir(){}
-    public void rmdir(File arr[],String fileName){
-        String path=search(arr,fileName);
-        if(path.equals("Not Found")){
-            System.out.println("File :"+fileName+" is not found!");
+
+    public void mkdir() {
+    }
+
+    public void rmdir(File arr[], String fileName) {
+        String path = search(arr, fileName);
+        if (path.equals("Not Found")) {
+            System.out.println("File :" + fileName + " is not found!");
             return;
         }
-        File MyFile=new File(path);
-        if(MyFile.isDirectory()){
-            if(!MyFile.delete()){
+        File MyFile = new File(path);
+        if (MyFile.isDirectory()) {
+            if (!MyFile.delete()) {
                 System.out.println("can't remove, it's not an empty directory!");
             }
         }
     }
-    public void mv(){}
-    public void rm(File arr[],String fileName){
-        String path=search(arr,fileName);
-        if(path.equals("Not Found")){
-            System.out.println("File :"+fileName+" is not found!");
+
+    public void mv() {
+    }
+
+    public void rm(File arr[], String fileName) {
+        String path = search(arr, fileName);
+        if (path.equals("Not Found")) {
+            System.out.println("File :" + fileName + " is not found!");
             return;
         }
-        File MyFile=new File(path);
+        File MyFile = new File(path);
         System.out.println(path);
-       if(!MyFile.isDirectory()){
-           MyFile.delete();
-       }
-        else{
+        if (!MyFile.isDirectory()) {
+            MyFile.delete();
+        } else {
             System.out.println("can't remove, it's not a file!");
-       }
+        }
 
     }
-    public void args(){}
-    public void date(){
-        Date date=new Date();
+
+    public void args() {
+    }
+
+    public void date() {
+        Date date = new Date();
         System.out.println(date);
     }
-    public void help(){
+
+    public void help() {
         System.out.println("Cat   ---> Display files");
         System.out.println("Clear ---> Clear the screen");
         System.out.println("Args  ---> List all command arguments");
@@ -155,17 +170,20 @@ public class Terminal {
         System.out.println(" >>   ---> Redirect the stdout of the program before and appends it to the given file after");
         System.out.println("Exit  ---> Stop all");
     }
-    public void pwd(){}
-    public void clear(){
 
-        for(int i=0;i<9;i++){
+    public void pwd() {
+    }
+
+    public void clear() {
+
+        for (int i = 0; i < 9; i++) {
             System.out.println();
         }
     }
 
-    public String search(File arr[],String fileName){
-        for(int i=0;i<arr.length;i++){
-            if(arr[i].getName().equals(fileName))
+    public String search(File arr[], String fileName) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].getName().equals(fileName))
                 return arr[i].getAbsolutePath();
         }
         return "Not Found";
