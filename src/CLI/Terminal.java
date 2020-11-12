@@ -11,10 +11,34 @@ import java.util.Scanner;
 
 public class Terminal {
 
-    public void cd() {
+    public File cd(String str, File fx) {
+        if (str.substring(1, 2).equals(":")) {
+            File file = new File(str);
+            if (file.exists()) {
+                return file;
+            }
+        } else {
+            File[] listOfFiles = fx.listFiles();
+            for (File file : listOfFiles) {
+                if (!fx.getPath().endsWith("\\")) {
+                    if (file.getAbsolutePath().equals(fx.getAbsolutePath() + str)) {
+                        return file;
+                    }
+                } else {
+                    if (file.getAbsolutePath().equals(fx.getAbsolutePath() + str.substring(1))) {
+                        return file;
+                    }
+                }
+            }
+        }
+        return fx;
     }
 
-    public void ls() {
+    public void ls(File fx) {
+        File[] listOfFiles = fx.listFiles();
+        for (File file : listOfFiles) {
+            System.out.println(file.getAbsolutePath());
+        }
     }
 
     public void cp() {
@@ -107,7 +131,31 @@ public class Terminal {
         }
     }
 
-    public void mkdir() {
+    public String mkdir(String path, File fx) {
+        if (path.substring(1, 2).equals(":")) {
+            File file = new File(path);
+            boolean flag = file.mkdir();
+            if (flag) {
+                return "Directory Has been created successfully";
+            } else {
+                return "Directory couldn't be created!";
+            }
+        } else {
+            if (path.substring(0, 1).equals("\\")) {
+                File file;
+
+                file = new File(fx.getAbsolutePath() + path);
+
+                boolean flag = file.mkdir();
+                if (flag) {
+                    return "Directory Has been created successfully";
+                } else {
+                    return "Directory couldn't be created!";
+                }
+            } else {
+                return "Directory couldn't be created!";
+            }
+        }
     }
 
     public void rmdir(File arr[], String fileName) {
@@ -171,7 +219,8 @@ public class Terminal {
         System.out.println("Exit  ---> Stop all");
     }
 
-    public void pwd() {
+    public void pwd(File fx) {
+        System.out.println(fx.getPath());
     }
 
     public void clear() {

@@ -19,7 +19,7 @@ public class main {
         Scanner input = new Scanner(System.in);
         while (true) {
             File arr[] = file.listFiles();
-            System.out.print(file.getAbsolutePath());
+            System.out.print(file.getAbsolutePath() + ">");
             function = parser.parse(input.nextLine());
             if (function) {
                 cmd = parser.getCmd();
@@ -35,6 +35,20 @@ public class main {
                         terminal.cat(arr, arguments[1]);
 
                     }
+                } else if (cmd.equals("cd")) {
+                    File fx = terminal.cd(arguments[0], file);
+                    if (file.getAbsolutePath().equals(fx.getAbsolutePath()) && !(arguments[0].equals(file.getAbsolutePath()))) {
+                        System.out.println("Path not found!");
+                    } else {
+                        file = fx;
+                    }
+
+                } else if (cmd.equals("pwd")) {
+                    terminal.pwd(file);
+                } else if (cmd.equals("ls")) {
+                    terminal.ls(file);
+                } else if (cmd.equals("mkdir")) {
+                    System.out.println(terminal.mkdir(arguments[0], file));
                 } else if (cmd.equals("clear")) {
                     terminal.clear();
                 } else if (cmd.equals("rm")) {
