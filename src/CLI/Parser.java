@@ -6,10 +6,12 @@ public class Parser{
     private String[] args;
     private String cmd;
     private ArrayList<String> LOC=new ArrayList<String>();
+    private int counter;
 
     Parser(){
         args=new String[2];
         cmd=null;
+        counter=0;
         LOC.add("cd");
         LOC.add("ls");
         LOC.add("cp");
@@ -27,7 +29,9 @@ public class Parser{
         LOC.add("pwd");
         LOC.add("clear");
     }
-
+    public int size(){
+        return counter;
+    }
     public boolean validate(String cmd){
         if(LOC.contains(cmd))
             return true;
@@ -40,23 +44,23 @@ public class Parser{
 
         for(int i=0;i<Substrings.length;i++){
             if(Substrings[i].contains(" ")){
-                System.out.println("error due to issue in input");
+                System.out.println("error due to an issue in input");
                 return false;
             }
         }
         if(Substrings.length>1)
         {
+            counter=0;
             for(int i=0;i< Substrings.length-1;i++){
               args[i]=Substrings[i+1];
+              counter++;
             }
-        }else{
 
         }
         if(validate(Substrings[0])){
             this.cmd=Substrings[0];
              return true;
         }
-
         else{
             return false;
         }
