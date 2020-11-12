@@ -43,16 +43,27 @@ public class main {
                     if(size==1) {
                         terminal.rm(arr, arguments[0]);
                     }
-                    else{
-                        System.out.println("error");
-                       // rmdir all directories
-                        //rm all files
-                    }
+                }else if(cmd.equals("date")){
+                    terminal.date();
                 }
+                else if(cmd.equals("help")){
+                    terminal.help();
+                }
+                else if(cmd.equals("rmdir")){
+                    terminal.rmdir(arr,arguments[0]);
+                }
+                else if(cmd.equals("more")){
+                    terminal.more(arguments[0],file.getAbsolutePath());
+                }
+                else{
+                    System.out.println("error");
+                    // rmdir all directories
+                    //rm all files
+                }
+            }
             }
 
 
         }
 
     }
-}
