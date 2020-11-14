@@ -37,7 +37,22 @@ public class Terminal {
         }
     }
 
-    public void cp() {
+    public void cp(String seek_path, String org_path) {
+        try{
+            File file = new File(org_path);
+            File temp = new File(seek_path);
+
+            FileWriter fw = new FileWriter(seek_path);
+            Scanner myReader = new Scanner(file);
+            while (myReader.hasNextLine()) {
+                fw.write(myReader.nextLine());
+            }
+            fw.close();
+            myReader.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void cat(File arr[], String fileName) {

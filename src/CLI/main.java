@@ -37,6 +37,8 @@ public class main {
                     }
                 } else if (cmd.equals("mv")) {
                     terminal.mv(arguments[0],arguments[1]);
+                }else if (cmd.equals("cp")){
+                    terminal.cp(arguments[0], arguments[1]);
                 } else if (cmd.equals("cd")) {
                     File fx = terminal.cd(arguments[0], file);
                     if (file.getAbsolutePath().equals(fx.getAbsolutePath()) && !(arguments[0].equals(file.getAbsolutePath()))) {
