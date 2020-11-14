@@ -1,11 +1,12 @@
 package CLI;
 
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -172,7 +173,9 @@ public class Terminal {
         }
     }
 
-    public void mv() {
+    public void mv(String path, File fx) {
+        File file = new File(path);
+
     }
 
     public void rm(File arr[], String fileName) {
@@ -192,6 +195,23 @@ public class Terminal {
     }
 
     public void args() {
+        try {
+            File commands = new File("command.txt");
+            File arguments = new File("args.txt");
+            Scanner reader1 = new Scanner(commands);
+            Scanner reader2 = new Scanner(arguments);
+            while (reader1.hasNextLine()) {
+                String Data1 = reader1.nextLine();
+                String Data2 = reader2.nextLine();
+                System.out.println(Data1 + " -->> " + Data2);
+            }
+            reader1.close();
+            reader2.close();
+        }
+        catch (FileNotFoundException e){
+            System.out.println("file not found!");
+            e.printStackTrace();
+        }
     }
 
     public void date() {
