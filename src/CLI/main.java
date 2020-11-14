@@ -35,6 +35,8 @@ public class main {
                         terminal.cat(arr, arguments[1]);
 
                     }
+                } else if (cmd.equals("mv")) {
+                    terminal.mv(arguments[0],arguments[1]);
                 } else if (cmd.equals("cd")) {
                     File fx = terminal.cd(arguments[0], file);
                     if (file.getAbsolutePath().equals(fx.getAbsolutePath()) && !(arguments[0].equals(file.getAbsolutePath()))) {
@@ -63,6 +65,8 @@ public class main {
                     terminal.rmdir(arr, arguments[0]);
                 } else if (cmd.equals("more")) {
                     terminal.more(arguments[0], file.getAbsolutePath());
+                } else if (cmd.equals("args")) {
+                    terminal.args();
                 } else {
                     System.out.println("error");
                     // rmdir all directories

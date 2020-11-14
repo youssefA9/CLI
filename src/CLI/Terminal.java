@@ -1,12 +1,7 @@
 package CLI;
 
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -59,6 +54,7 @@ public class Terminal {
             while (read.hasNextLine()) {
                 System.out.println(read.nextLine());
             }
+            read.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -173,9 +169,25 @@ public class Terminal {
         }
     }
 
-    public void mv(String path, File fx) {
-        File file = new File(path);
+    public void mv(String org_path, String seek_path)  {
+        try{
+        File file = new File(org_path);
+        File temp = new File(seek_path);
 
+        FileWriter fw = new FileWriter(seek_path);
+        Scanner myReader = new Scanner(file);
+        while (myReader.hasNextLine()) {
+            fw.write(myReader.nextLine());
+
+
+        }
+            fw.close();
+            myReader.close();
+            file.delete();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void rm(File arr[], String fileName) {
@@ -207,8 +219,7 @@ public class Terminal {
             }
             reader1.close();
             reader2.close();
-        }
-        catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("file not found!");
             e.printStackTrace();
         }
