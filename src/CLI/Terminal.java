@@ -7,6 +7,24 @@ import java.util.Scanner;
 
 public class Terminal {
 
+    public void redirect(String argument,File arr[],String fileName) throws IOException {
+        String path=search(arr,fileName);
+        if (path.equals("Not Found")) {
+            System.out.println("File :" + fileName + " is not found!");
+            return;
+        }
+        File Myfile= new File(path);
+
+        if(argument.equals(">")){
+            FileWriter fr=new FileWriter(Myfile,false);
+        }
+        else if(argument.equals(">>")){
+
+        }
+        else{
+            System.out.println("error");
+        }
+    }
     public File cd(String str, File fx) {
         if (str.substring(1, 2).equals(":")) {
             File file = new File(str);
@@ -55,6 +73,7 @@ public class Terminal {
         }
     }
 
+
     public void cat(File arr[], String fileName) {
 
         String path = search(arr, fileName);
@@ -64,15 +83,26 @@ public class Terminal {
             return;
         }
         File MyFile = new File(path);
+
         try {
+
             Scanner read = new Scanner(MyFile);
+            FileWriter fw=new FileWriter("D:\\mm.txt");
+            String line;
             while (read.hasNextLine()) {
-                System.out.println(read.nextLine());
+                line=read.nextLine();
+                System.out.println(line);
+                fw.write(line);
+                fw.write("\n");
             }
             read.close();
+            fw.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }catch(IOException e){
+            e.printStackTrace();
         }
+
     }
    /* public void cat2file(File arr[],String fileName1,String fileName2){
         String path1=search(arr,fileName1);

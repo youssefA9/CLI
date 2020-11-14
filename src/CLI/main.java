@@ -19,7 +19,7 @@ public class main {
         Scanner input = new Scanner(System.in);
         while (true) {
             File arr[] = file.listFiles();
-            System.out.print(file.getAbsolutePath() + ">");
+            System.out.print("✔");
             function = parser.parse(input.nextLine());
             if (function) {
                 cmd = parser.getCmd();
@@ -30,6 +30,14 @@ public class main {
                     if (size == 1) {
                         terminal.cat(arr, arguments[0]);
                     } else {
+
+                        /*
+                        * cat k.txt
+                        * cat >
+                        * */
+
+
+
 
                         terminal.cat(arr, arguments[0]);
                         terminal.cat(arr, arguments[1]);
