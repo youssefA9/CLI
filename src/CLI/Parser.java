@@ -7,7 +7,7 @@ public class Parser {
 
     private String cmd;
     private ArrayList<String> LOC = new ArrayList<String>();
-    private ArrayList<Integer> LOCpar= new ArrayList<Integer>();
+    private ArrayList<Integer> LOCpar = new ArrayList<Integer>();
     private int counter;
     private Vector<String> args;
 
@@ -44,8 +44,8 @@ public class Parser {
         LOC.add("date");
         LOC.add("help");
         LOC.add("pwd");
-        LOC.add("clear");  }
-
+        LOC.add("clear");
+    }
 
 
     public boolean validate(String cmd) {
@@ -57,9 +57,9 @@ public class Parser {
 
     public boolean parse(String input) {
         String[] Substrings = input.split(" ");
-        boolean flag=false;
-        int idx=0;
-        for(int i=0;i<args.size();i++){
+        boolean flag = false;
+        int idx = 0;
+        for (int i = 0; i < args.size(); i++) {
             args.clear();
         }
 
@@ -69,20 +69,20 @@ public class Parser {
             }
         }
         //for(int i=0;i<LOC.size();i++){
-          //  if(Substrings[0].equals(LOC.get(i))){
-            //    idx=i;
-            //}
+        //  if(Substrings[0].equals(LOC.get(i))){
+        //    idx=i;
+        //}
         //}
 
         //if(LOCpar.get(idx)==(Substrings.length-1))
-          //  flag= true;
+        //  flag= true;
 
-       // if(flag==true){
+        // if(flag==true){
 
 
         if (Substrings.length > 1) {
             for (int i = 0; i < Substrings.length - 1; i++) {
-                args.add(Substrings[i+1]);
+                args.add(Substrings[i + 1]);
 
             }
 
@@ -92,11 +92,12 @@ public class Parser {
             return true;
         } else {
             return false;
-        }}
-      //  else
-        //{
-          //  return false;
-        //}
+        }
+    }
+    //  else
+    //{
+    //  return false;
+    //}
 
     //}
 
