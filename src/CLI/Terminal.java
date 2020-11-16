@@ -35,15 +35,9 @@ public class Terminal {
         File[] listOfFiles = fx.listFiles();
         File myfile;
         FileWriter f;
-        File fr;
-        FileWriter fw;
-        BufferedWriter out;
-        if ((m.size() == 2) && ((m.get(0).equals(">")) || (m.get(0).equals(">>")))) {
-            /*fr = new File(m.get(2));
-            fw = new FileWriter(m.get(2));*/
-            myfile = new File(m.get(1));
 
-            //out = new BufferedWriter(new FileWriter(m.get(1), true));
+        if ((m.size() == 2) && ((m.get(0).equals(">")) || (m.get(0).equals(">>")))) {
+            myfile = new File(m.get(1));
             if (m.get(0).equals(">")) {
                 f = new FileWriter(m.get(1));
                 f.flush();
@@ -53,7 +47,6 @@ public class Terminal {
         } else {
             myfile = new File("D:\\lines.txt");
             f = new FileWriter("D:\\lines.txt");
-            out = new BufferedWriter(new FileWriter(m.get(1), true));
         }
 
 
@@ -64,8 +57,7 @@ public class Terminal {
                 if (m.get(0).equals(">")) {
                     f.write(file.getAbsolutePath() + "\n");
                 } else if (m.get(0).equals(">>")) {
-                    //out.write(file.getAbsolutePath() + "\n");
-                    // appendStrToFile(f, file.getAbsolutePath());
+
                     f.write(file.getAbsolutePath() + "\n");
                 } else if (m.get(0).equals("|")) {
                     f.write(file.getAbsolutePath() + "\n");
@@ -306,8 +298,20 @@ public class Terminal {
 
     public File args(Vector<String> m) throws IOException {
         File commands = new File("command.txt");
-        File Myfile = new File("D:\\lines.txt");
-        FileWriter f = new FileWriter("D:\\lines.txt");
+        File Myfile;
+        FileWriter f;
+        if ((m.size() == 2) && ((m.get(0).equals(">")) || (m.get(0).equals(">>")))) {
+            Myfile = new File(m.get(1));
+            if (m.get(0).equals(">")) {
+                f = new FileWriter(m.get(1));
+                f.flush();
+            } else {
+                f = new FileWriter(m.get(1), true);
+            }
+        } else {
+            Myfile = new File("D:\\lines.txt");
+            f = new FileWriter("D:\\lines.txt");
+        }
         if (m.size() == 0) {
             try {
                 Scanner reader1 = new Scanner(commands);
@@ -349,8 +353,20 @@ public class Terminal {
 
     public File help(Vector<String> m) throws IOException {
 
-        File myfile = new File("D:\\lines.txt");
-        FileWriter f = new FileWriter("D:\\lines.txt");
+        File myfile;
+        FileWriter f;
+        if ((m.size() == 2) && ((m.get(0).equals(">")) || (m.get(0).equals(">>")))) {
+            myfile = new File(m.get(1));
+            if (m.get(0).equals(">")) {
+                f = new FileWriter(m.get(1));
+                f.flush();
+            } else {
+                f = new FileWriter(m.get(1), true);
+            }
+        } else {
+            myfile = new File("D:\\lines.txt");
+            f = new FileWriter("D:\\lines.txt");
+        }
         if (m.size() == 0) {
             System.out.println("Cat   ---> Display files");
             System.out.println("Clear ---> Clear the screen");
@@ -396,12 +412,27 @@ public class Terminal {
 
     public File pwd(File fx, Vector<String> m) throws IOException {
 
-        File myfile = new File("D:\\lines.txt");
-        FileWriter f = new FileWriter("D:\\lines.txt");
+        File myfile;
+        FileWriter f;
+        if ((m.size() == 2) && ((m.get(0).equals(">")) || (m.get(0).equals(">>")))) {
+            myfile = new File(m.get(1));
+            if (m.get(0).equals(">")) {
+                f = new FileWriter(m.get(1));
+                f.flush();
+            } else {
+                f = new FileWriter(m.get(1), true);
+            }
+        } else {
+            myfile = new File("D:\\lines.txt");
+            f = new FileWriter("D:\\lines.txt");
+        }
+
         if (m.size() == 0) {
             System.out.println(fx.getPath());
         } else if (m.size() == 2) {
             if (m.get(0).equals("|")) {
+                f.write(fx.getAbsolutePath() + "\n");
+            } else if (m.get(0).equals(">") || m.get(0).equals(">>")) {
                 f.write(fx.getAbsolutePath() + "\n");
             }
         } else {
