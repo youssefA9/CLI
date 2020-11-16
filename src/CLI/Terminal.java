@@ -36,9 +36,9 @@ public class Terminal {
         File myfile;
         FileWriter f;
 
-        if ((m.size() == 2) && ((m.get(0).equals(">")) || (m.get(0).equals(">>")))) {
+        if ((m.size() == 2) && ((m.get(0).equals("<")) || (m.get(0).equals("<<")))) {
             myfile = new File(m.get(1));
-            if (m.get(0).equals(">")) {
+            if (m.get(0).equals("<")) {
                 f = new FileWriter(m.get(1));
                 f.flush();
             } else {
@@ -54,9 +54,9 @@ public class Terminal {
             if (m.size() == 0) {
                 System.out.println(file.getAbsolutePath());
             } else if (m.size() == 2) {
-                if (m.get(0).equals(">")) {
+                if (m.get(0).equals("<")) {
                     f.write(file.getAbsolutePath() + "\n");
-                } else if (m.get(0).equals(">>")) {
+                } else if (m.get(0).equals("<<")) {
 
                     f.write(file.getAbsolutePath() + "\n");
                 } else if (m.get(0).equals("|")) {
@@ -300,9 +300,9 @@ public class Terminal {
         File commands = new File("command.txt");
         File Myfile;
         FileWriter f;
-        if ((m.size() == 2) && ((m.get(0).equals(">")) || (m.get(0).equals(">>")))) {
+        if ((m.size() == 2) && ((m.get(0).equals("<")) || (m.get(0).equals("<<")))) {
             Myfile = new File(m.get(1));
-            if (m.get(0).equals(">")) {
+            if (m.get(0).equals("<")) {
                 f = new FileWriter(m.get(1));
                 f.flush();
             } else {
@@ -355,9 +355,9 @@ public class Terminal {
 
         File myfile;
         FileWriter f;
-        if ((m.size() == 2) && ((m.get(0).equals(">")) || (m.get(0).equals(">>")))) {
+        if ((m.size() == 2) && ((m.get(0).equals("<")) || (m.get(0).equals("<<")))) {
             myfile = new File(m.get(1));
-            if (m.get(0).equals(">")) {
+            if (m.get(0).equals("<")) {
                 f = new FileWriter(m.get(1));
                 f.flush();
             } else {
@@ -414,9 +414,9 @@ public class Terminal {
 
         File myfile;
         FileWriter f;
-        if ((m.size() == 2) && ((m.get(0).equals(">")) || (m.get(0).equals(">>")))) {
+        if ((m.size() == 2) && ((m.get(0).equals("<")) || (m.get(0).equals("<<")))) {
             myfile = new File(m.get(1));
-            if (m.get(0).equals(">")) {
+            if (m.get(0).equals("<")) {
                 f = new FileWriter(m.get(1));
                 f.flush();
             } else {
@@ -432,7 +432,7 @@ public class Terminal {
         } else if (m.size() == 2) {
             if (m.get(0).equals("|")) {
                 f.write(fx.getAbsolutePath() + "\n");
-            } else if (m.get(0).equals(">") || m.get(0).equals(">>")) {
+            } else if (m.get(0).equals("<") || m.get(0).equals("<<")) {
                 f.write(fx.getAbsolutePath() + "\n");
             }
         } else {
