@@ -15,7 +15,7 @@ public class Parser {
 
         cmd = null;
         args = new Vector<String>();
-
+/*
         LOCpar.add(1);
         LOCpar.add(0);
         LOCpar.add(2);
@@ -30,6 +30,7 @@ public class Parser {
         LOCpar.add(0);
         LOCpar.add(0);
         LOCpar.add(0);
+  */
         LOC.add("cd");
         LOC.add("ls");
         LOC.add("cp");
@@ -43,8 +44,7 @@ public class Parser {
         LOC.add("date");
         LOC.add("help");
         LOC.add("pwd");
-        LOC.add("clear");
-    }
+        LOC.add("clear");  }
 
 
 
@@ -59,22 +59,25 @@ public class Parser {
         String[] Substrings = input.split(" ");
         boolean flag=false;
         int idx=0;
+        for(int i=0;i<args.size();i++){
+            args.clear();
+        }
 
         for (int i = 0; i < Substrings.length; i++) {
             if (Substrings[i].contains(" ")) {
                 return false;
             }
         }
-        for(int i=0;i<LOC.size();i++){
-            if(Substrings[0].equals(LOC.get(i))){
-                idx=i;
-            }
-        }
+        //for(int i=0;i<LOC.size();i++){
+          //  if(Substrings[0].equals(LOC.get(i))){
+            //    idx=i;
+            //}
+        //}
 
-        if(LOCpar.get(idx)==(Substrings.length-1))
-            flag= true;
+        //if(LOCpar.get(idx)==(Substrings.length-1))
+          //  flag= true;
 
-        if(flag==true){
+       // if(flag==true){
 
 
         if (Substrings.length > 1) {
@@ -90,12 +93,12 @@ public class Parser {
         } else {
             return false;
         }}
-        else
-        {
-            return false;
-        }
+      //  else
+        //{
+          //  return false;
+        //}
 
-    }
+    //}
 
     public String getCmd() {
         return cmd;

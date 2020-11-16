@@ -1,7 +1,8 @@
 package CLI;
 
-import java.util.Scanner;
 import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 import java.util.Vector;
 
 
@@ -10,21 +11,9 @@ public class main {
 
         Terminal terminal = new Terminal();
         if (parse) {
+
             if (cmd.equals("cat")) {
-                if (arguments.size() == 1) {
-                    terminal.cat(arr, arguments.get(0));
-                } else {
-
-                    /*
-                     * cat k.txt
-                     * cat >
-                     * */
-
-
-                    terminal.cat(arr, arguments.get(0));
-                    terminal.cat(arr, arguments.get(1));
-
-                }
+                    terminal.cat(arguments.get(0),file.getAbsolutePath());
             } else if (cmd.equals("mv")) {
                 terminal.mv(arguments.get(0), arguments.get(1));
             } else if (cmd.equals("cp")) {
@@ -38,9 +27,17 @@ public class main {
                 }
 
             } else if (cmd.equals("pwd")) {
-                terminal.pwd(file);
+                try {
+                    File f=terminal.pwd(file,arguments);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else if (cmd.equals("ls")) {
-                terminal.ls(file);
+                try {
+                    File f = new File(String.valueOf(terminal.ls(file,arguments)));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else if (cmd.equals("mkdir")) {
                 System.out.println(terminal.mkdir(arguments.get(0), file));
             } else if (cmd.equals("clear")) {
@@ -52,22 +49,28 @@ public class main {
             } else if (cmd.equals("date")) {
                 terminal.date();
             } else if (cmd.equals("help")) {
-                terminal.help();
+                try {
+                    File f=terminal.help(arguments);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else if (cmd.equals("rmdir")) {
                 terminal.rmdir(arr, arguments.get(0));
             } else if (cmd.equals("more")) {
                 terminal.more(arguments.get(0), file.getAbsolutePath());
             } else if (cmd.equals("args")) {
-                terminal.args();
+                try {
+                    File f= terminal.args(arguments);
+                }catch (IOException e){e.printStackTrace();}
             } else {
                 System.out.println("error");
                 // rmdir all directories
                 //rm all files
-            }
 
-        } else {
+
+        }} else {
             System.out.println("error in parsing");
-        }
+    }
         return file;
 
     }
@@ -82,13 +85,30 @@ public class main {
         boolean function;
         Scanner input = new Scanner(System.in);
         File file = new File("D:\\");
+        Terminal terminal= new Terminal();
+        Vector<String>files=new Vector<String>();
+        files.add("D://lines.txt");
         while (true) {
             System.out.print("✔");
             File arr[] = file.listFiles();
             function = parser.parse(input.nextLine());
             cmd = parser.getCmd();
             arguments = parser.getArguments();
-            file=ex(function,cmd,arguments,arr,file);
+            if(arguments.size()>=1) {
+                if (arguments.get(0).equals("|")) {
+                        if (parser.validate(cmd) && parser.validate(arguments.get(1))) {
+                            file = ex(true, cmd, arguments, arr, file);
+                            arr = file.listFiles();
+                            file = ex(true, arguments.get(1), files, arr, file);
+
+
+                        }
+                    }
+
+
+            }
+
+                    file = ex(function, cmd, arguments, arr, file);
 
 
         }
