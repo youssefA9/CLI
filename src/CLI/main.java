@@ -19,11 +19,19 @@ public class main {
             } else if (cmd.equals("cp")) {
                 terminal.cp(arguments.get(0), arguments.get(1));
             } else if (cmd.equals("cd")) {
-                File fx = terminal.cd(arguments.get(0), file);
-                if (file.getAbsolutePath().equals(fx.getAbsolutePath()) && !(arguments.get(0).equals(file.getAbsolutePath()))) {
-                    System.out.println("Path not found!");
-                } else {
+                File fx;
+                if (arguments.size() == 0) {
+                    fx = terminal.cd("Default", file);
                     return fx;
+                } else {
+                    fx = terminal.cd(arguments.get(0), file);
+                }
+                if (arguments.size() != 0) {
+                    if (file.getAbsolutePath().equals(fx.getAbsolutePath()) && !(arguments.get(0).equals(file.getAbsolutePath()))) {
+                        System.out.println("Path not found!");
+                    } else {
+                        return fx;
+                    }
                 }
 
             } else if (cmd.equals("pwd")) {

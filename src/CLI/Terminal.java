@@ -9,7 +9,10 @@ import java.util.Vector;
 public class Terminal {
 
     public File cd(String str, File fx) {
-        if (str.substring(1, 2).equals(":")) {
+        if (str.equals("Default")) {
+            File f = new File("D:\\");
+            return f;
+        } else if (str.substring(1, 2).equals(":")) {
             File file = new File(str);
             if (file.exists()) {
                 return file;
