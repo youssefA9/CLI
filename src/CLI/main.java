@@ -73,7 +73,10 @@ public class main {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else {
+            } else if (cmd.equals("exit")){
+                terminal.exit();
+            }
+            else {
                 System.out.println("error");
                 // rmdir all directories
                 //rm all files

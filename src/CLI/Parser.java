@@ -45,6 +45,7 @@ public class Parser {
         LOC.add("help");
         LOC.add("pwd");
         LOC.add("clear");
+        LOC.add("exit");
     }
 
 
